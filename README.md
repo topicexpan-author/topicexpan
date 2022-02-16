@@ -14,8 +14,8 @@ This is the anonymized github repository for the submission, entitled **"TopicEx
 ## Step 2. Download the dataset and GloVe embedding features
 
 - Download the dataset file and place it into your own data directory
-  - [Amazon](http://)
-  - [DBPedia](http://)
+  - [Amazon](https://drive.google.com/file/d/1HLYTPX6cHJtPXwYChh0EY_SVgSmg_inp/view?usp=sharing)
+  - [DBPedia](https://drive.google.com/file/d/1LBgsTwQ-k9zWDfS6FdRvYqdtQIEzOIHO/view?usp=sharing)
 - Download the pretrained embedding file and place it into your own embedding directory
   - [GloVe](https://nlp.stanford.edu/projects/glove/) (`glove.6B.300d.txt` is used in our experiments)
 
