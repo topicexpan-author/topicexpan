@@ -1,0 +1,79 @@
+{
+    "name": "TopicExpan",
+    "n_gpu": 1,
+    "device": 0,
+    "embed_dir": "",
+
+    "arch": {
+        "type": "TopicExpan",
+        "args": { 
+            "model_name": "bert-base-uncased",
+            "doc_embed_dim": 768,
+            "topic_embed_dim": 300,
+
+            "gcn_encoder_num_layers": 2,
+            "tfm_decoder_num_layers": 1,
+            "tfm_decoder_num_heads": 16,
+            "tfm_decoder_max_length" :10
+        }
+    },
+
+    "data_loader_for_training": {
+        "type": "DocTopicPhraseDataLoader",
+        "args":{
+            "directory": "",
+            "batch_size": 16,
+            "shuffle": true,
+            "validation_split": 0.01,
+            "num_workers": 16,
+            "alpha": 0.5
+        }
+    },
+
+    "data_loader_for_expansion": {
+        "type": "DocDataLoader",
+        "args":{
+            "directory": "",
+            "batch_size": 16,
+            "shuffle": false,
+            "validation_split": 0.0,
+            "num_workers": 16,
+            "alpha": 0.5
+        }
+    },
+
+    "optimizer": {
+        "type": "AdamW",
+        "args":{
+            "lr": 0.00005,
+            "weight_decay": 5e-6,
+            "amsgrad": true
+        }
+    },
+    
+    "loss": {
+        "sim": "infonce_loss",
+        "gen": "nll_loss"
+    },
+
+    "metrics": ["perplexity", "accuracy"],
+
+    "trainer": {
+        "epochs": 30,
+        "save_dir": "",
+        "save_period": 1,
+        "verbosity": 2,
+        
+        "monitor": "max val_accuracy",
+        "early_stop": 10,
+        "tensorboard": true
+    },
+
+    "expansion": {
+        "filter_type": "nscore",
+        "topk": 2000,
+        "tau": 0.8,
+        "num_clusters": 10 
+    }
+    
+}
